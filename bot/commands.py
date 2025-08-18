@@ -21,22 +21,26 @@ async def live_command(interaction: discord.Interaction, username: str):
         else:
             await interaction.followup.send(f"⚠️ Perekaman untuk **{username}** sudah aktif.", ephemeral=True)
 
-@tree.command(name="stop", description="Menghentikan perekaman untuk seorang user dengan benar.")
-@app_commands.describe(username="Username TikTok yang perekamannya ingin dihentikan.")
-async def stop_command(interaction: discord.Interaction, username: str):
-    await interaction.response.defer(ephemeral=True) # Beri waktu untuk proses
-    
-    process_to_stop = recorder.stop_a_recording(username)
-    
-    if process_to_stop:
-        # Tunggu sebentar untuk memberi kesempatan proses berhenti sendiri
-        await asyncio.sleep(8) # Beri waktu 8 detik
-        
-        if process_to_stop.is_alive():
-            process_to_stop.terminate() # Fallback jika tidak berhenti
-            await interaction.followup.send(f"⚠️ Perekaman untuk **{username}** tidak merespons, dihentikan secara paksa.", ephemeral=True)
-        else:
-            del recorder.active_recordings[username] # Hapus dari daftar jika sudah berhenti
-            await interaction.followup.send(f"✅ Perekaman untuk **{username}** telah dihentikan & video sedang diproses.", ephemeral=True)
-    else:
+@tree.command(name="stop", description="Menghentikan perekaman untuk seorang user dengan benar.")  
+@app_commands.describe(username="Username TikTok yang perekamannya ingin dihentikan.")  
+async def stop_command(interaction: discord.Interaction, username: str):  
+    await interaction.response.defer(ephemeral=True)  
+      
+    process_to_stop = recorder.stop_a_recording(username)  
+      
+    if process_to_stop:  
+        # Tunggu lebih lama untuk graceful shutdown (30 detik)  
+        await asyncio.sleep(5)  
+          
+        if process_to_stop.is_alive():  
+            await interaction.followup.send(f"⏳ Menunggu perekaman **{username}** selesai secara graceful...", ephemeral=True)  
+            await asyncio.sleep(25)  # Total 30 detik  
+              
+            if process_to_stop.is_alive():  
+                await interaction.followup.send(f"⚠️ Perekaman untuk **{username}** tidak merespons, dihentikan secara paksa.", ephemeral=True)  
+            else:  
+                await interaction.followup.send(f"✅ Perekaman untuk **{username}** telah dihentikan secara graceful & video sedang diproses.", ephemeral=True)  
+        else:  
+            await interaction.followup.send(f"✅ Perekaman untuk **{username}** telah dihentikan & video sedang diproses.", ephemeral=True)  
+    else:  
         await interaction.followup.send(f"ℹ️ Tidak ada perekaman aktif untuk **{username}**.", ephemeral=True)
