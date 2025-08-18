@@ -16,7 +16,7 @@ def start_new_recording(username: str):
     stop_event = multiprocessing.Event()  
       
     # Gunakan botrec.start_recording yang sudah mendukung stop_event  
-    from lib.tiktok_recorder.botrec import start_recording  
+    from lib.tiktok_recorder.bridge import start_recording  
     process = start_recording(username, stop_event)  
       
     if process and process.is_alive():  
