@@ -1,3 +1,5 @@
+# File: lib/tiktok_recorder/core/tiktok_recorder.py
+
 import os
 import time
 from http.client import HTTPException
@@ -28,6 +30,7 @@ class TikTokRecorder:
         output,
         duration,
         use_telegram,
+        stop_event=None  # <-- PERUBAHAN 1: Tambahkan parameter stop_event
     ):
         # Setup TikTok API client
         self.tiktok = TikTokAPI(proxy=proxy, cookies=cookies)
@@ -42,6 +45,7 @@ class TikTokRecorder:
         self.automatic_interval = automatic_interval
         self.duration = duration
         self.output = output
+        self.stop_event = stop_event # <-- PERUBAHAN 2: Simpan event
 
         # Upload Settings
         self.use_telegram = use_telegram
@@ -108,6 +112,10 @@ class TikTokRecorder:
 
     def automatic_mode(self):
         while True:
+            # PERUBAHAN 3: Cek sinyal berhenti di loop utama automatic_mode
+            if self.stop_event and self.stop_event.is_set():
+                logger.info(f"Sinyal berhenti diterima untuk @{self.user}, proses dihentikan.")
+                break
             try:
                 self.room_id = self.tiktok.get_room_id_from_user(self.user)
                 self.manual_mode()
@@ -215,6 +223,13 @@ class TikTokRecorder:
             stop_recording = False
             while not stop_recording:
                 try:
+                    # --- PERUBAHAN 4 (PALING PENTING) ---
+                    # Periksa apakah sinyal berhenti dari bot utama telah diterima
+                    if self.stop_event and self.stop_event.is_set():
+                        logger.info("Sinyal berhenti diterima dari bot. Menyelesaikan perekaman...")
+                        stop_recording = True
+                        continue
+
                     if not self.tiktok.is_room_alive(room_id):
                         logger.info("User is no longer live. Stopping recording.")
                         break
