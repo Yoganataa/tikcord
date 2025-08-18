@@ -1,0 +1,12 @@
+{
+  "_comment": "Map TikTok usernames to specific Discord channel IDs",
+  "_comment2": "If a username is not listed here, notifications go to FALLBACK_CHANNEL_ID",
+  "_example_usage": {
+    "tiktok_username": "123456789012345678",
+    "another_user": "987654321098765432"
+  },
+  
+  "example_user1": "123456789012345678",
+  "example_user2": "987654321098765432",
+  "example_user3": "555666777888999000"
+}

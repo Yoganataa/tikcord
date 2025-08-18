@@ -1,0 +1,15 @@
+{
+  "_comment": "Telegram bot configuration for uploading recordings",
+  "_instructions": [
+    "1. Create a Telegram bot via @BotFather",
+    "2. Get your Telegram API credentials from https://my.telegram.org/apps",
+    "3. Fill in the values below",
+    "4. Rename this file to telegram.json",
+    "5. Set use_telegram=True in recorder settings if you want auto-upload"
+  ],
+  
+  "api_id": "",
+  "api_hash": "",
+  "bot_token": "",
+  "chat_id": 0
+}

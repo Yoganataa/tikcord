@@ -1,14 +1,15 @@
-# === Pustaka untuk Bot Discord ===
-discord.py
-python-dotenv
+# === Discord Bot Dependencies ===
+discord.py==2.4.0
+python-dotenv==1.0.1
 
-# === Pustaka dari TikTok Live Recorder ===
-argparse~=1.4.0
-ffmpeg-python~=0.2.0
-Pyrogram~=2.0.0
-distro~=1.9.0
-curl_cffi~=0.12.0
-requests~=2.32.0
+# === TikTok Live Recorder Dependencies ===
+# Note: argparse is built-in to Python, removed from requirements
+ffmpeg-python==0.2.0
+Pyrogram==2.0.106
+distro==1.9.0
+curl-cffi==0.7.2
+requests==2.32.3
 
-# Opsional, untuk menghilangkan peringatan kecepatan Pyrogram
-TgCrypto
+# === Optional Dependencies ===
+# For faster Pyrogram encryption (recommended)
+TgCrypto==1.2.5

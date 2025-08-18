@@ -4,6 +4,7 @@ __pycache__/
 *.pyo
 *.pyd
 *.pyc
+*.pdb
 
 # Jupyter Notebook
 .ipynb_checkpoints/
@@ -29,11 +30,35 @@ Thumbs.db
 # Log files
 *.log
 
-# Config
+# === Configuration Files (SECURITY) ===
+# Never commit actual config files with secrets
 config/user_map.json
+lib/tiktok_recorder/cookies.json
+lib/tiktok_recorder/telegram.json
 
-# Downloads folder
+# Pyrogram session files
+lib/tiktok_recorder/telegram_session.session
+
+# === Downloads folder ===
 downloads/
 downloads/*
 
-# Other
+# === Build artifacts ===
+build/
+dist/
+*.egg-info/
+
+# === Testing ===
+.pytest_cache/
+.coverage
+htmlcov/
+
+# === IDE ===
+.idea/
+*.swp
+*.swo
+
+# === Other ===
+*.tmp
+*.bak
+.DS_Store?
