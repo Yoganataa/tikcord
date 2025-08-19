@@ -3,8 +3,8 @@ from pathlib import Path
 from pyrogram import Client
 from pyrogram.enums import ParseMode
 
-from utils.logger_manager import logger
-from utils.utils import read_telegram_config
+from ..utils.logger_manager import logger
+from ..utils.utils import read_telegram_config
 
 
 FREE_USER_MAX_FILE_SIZE = 2 * 1024 * 1024 * 1024

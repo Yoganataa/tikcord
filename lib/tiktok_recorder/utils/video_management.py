@@ -3,7 +3,7 @@ import time
 
 import ffmpeg
 
-from utils.logger_manager import logger
+from .logger_manager import logger
 
 
 class VideoManagement:

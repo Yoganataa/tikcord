@@ -2,7 +2,7 @@ import re
 import base64
 import json
 from hashlib import sha256
-from utils.custom_exceptions import IPBlockedByWAF
+from ..utils.custom_exceptions import IPBlockedByWAF
 
 class WAFSolver:
 

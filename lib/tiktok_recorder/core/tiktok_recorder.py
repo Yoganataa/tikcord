@@ -6,13 +6,13 @@ from multiprocessing.synchronize import Event
 
 from requests import RequestException
 
-from core.tiktok_api import TikTokAPI
-from utils.logger_manager import logger
-from utils.video_management import VideoManagement
-from upload.telegram import Telegram
-from utils.custom_exceptions import LiveNotFound, UserLiveError, \
+from .tiktok_api import TikTokAPI
+from ..utils.logger_manager import logger
+from ..utils.video_management import VideoManagement
+from ..upload.telegram import Telegram
+from ..utils.custom_exceptions import LiveNotFound, UserLiveError, \
     TikTokRecorderError
-from utils.enums import Mode, Error, TimeOut, TikTokError
+from ..utils.enums import Mode, Error, TimeOut, TikTokError
 
 
 class TikTokRecorder:

@@ -1,8 +1,8 @@
 import argparse
 import re
 
-from utils.custom_exceptions import ArgsParseError
-from utils.enums import Mode, Regex
+from .custom_exceptions import ArgsParseError
+from .enums import Mode, Regex
 
 
 def parse_args():

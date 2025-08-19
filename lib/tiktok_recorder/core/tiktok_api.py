@@ -1,12 +1,13 @@
 import json
 import re
 
-from core.tiktok_waf_solver import WAFSolver
-from http_utils.http_client import HttpClient
-from utils.enums import StatusCode, TikTokError
-from utils.logger_manager import logger
-from utils.custom_exceptions import UserLiveError, TikTokRecorderError, \
-    LiveNotFound, IPBlockedByWAF
+from .tiktok_waf_solver import WAFSolver
+from ..http_utils.http_client import HttpClient
+from ..utils.enums import StatusCode, TikTokError
+from ..utils.logger_manager import logger
+from ..utils.custom_exceptions import (
+    UserLiveError, TikTokRecorderError, LiveNotFound, IPBlockedByWAF
+)
 
 
 class TikTokAPI:

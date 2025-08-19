@@ -1,7 +1,7 @@
 import json
 import os
 
-from utils.enums import Info
+from .enums import Info
 
 
 def banner() -> None:

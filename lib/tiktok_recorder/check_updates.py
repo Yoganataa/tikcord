@@ -63,7 +63,7 @@ def check_updates() -> bool:
 
     try:
         from enums_temp import Info
-        from utils.enums import Info as InfoOld
+        from .utils.enums import Info as InfoOld
     except ImportError:
         print("Error importing the file or missing module.")
         delete_tmp_file()
